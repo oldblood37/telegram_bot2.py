@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@600&display=swap');
+
+/* Основные переменные для адаптивного размера шрифта */
+:root {
+    --font-size-base-min: 16px;
+    --font-size-base-max: 18px;
+    --screen-width-min: 320px;
+    --screen-width-max: 1920px;
+	--logo-size-min: 60px; /* Минимальный размер логотипа */
+    --logo-size-max: 100px; /* Максимальный размер логотипа */
+}
+
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Jost', sans-serif;
+    /* Адаптивный размер шрифта */
+    font-size: calc(var(--font-size-base-min) + (var(--font-size-base-max) - var(--font-size-base-min)) * ((100vw - var(--screen-width-min)) / (var(--screen-width-max) - var(--screen-width-min))));
+    background-color: #fff;
+    color: #333;
+}
+
+/* Стили шапки */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(38, 38, 38, 1);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    transition: box-shadow 0.3s ease-in-out;
+}
+header.shadow {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.logo {
+    /* Адаптивное изменение размера логотипа */
+    width: calc(var(--logo-size-min) + (var(--logo-size-max) - var(--logo-size-min)) * ((100vw - var(--screen-width-min)) / (var(--screen-width-max) - var(--screen-width-min))));
+    height: auto; /* Сохраняем пропорции логотипа */
+}
+
+.custom-button:hover {
+    background-color: #124f70; /* Темно-синий цвет при наведении */
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divider {
+    width: 1px;
+    height: 24px;
+    background-color: #7F7F7F; /* Серый цвет линии */
+    margin: 0 12px; /* Отступы вокруг линии */
+}
+@media (max-width: 768px) {
+    .logo {
+        width: var(--logo-size-min); /* Фиксированный минимальный размер для мобильных устройств */
+    }
+}
+
+@media (min-width: 1920px) {
+    .logo {
+        width: var(--logo-size-max); /* Фиксированный максимальный размер для больших экранов */
+    }
+
+}
+
+.navbar {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 15%;
+}
+
+.text-button {
+    background: none;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem; /* Замените на ваш размер шрифта */
+    color: #ffffff; /* Замените на ваш цвет */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.text-button:hover {
+    /* Стили для состояния наведения */
+}
+.nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+    margin-left: 15%;
+}
+.nav-list li {
+    margin: 0 60px;
+    white-space: nowrap;
+}
+.burger-button {
+    display: flex; /* Скрытие кнопки на больших экранах */
+    flex-direction: column; /* Вертикальное выравнивание линий */
+    justify-content: space-around; /* Равное расстояние между линиями */
+    width: 30px; /* Ширина кнопки */
+    height: 25px; /* Высота кнопки */
+    background: transparent; /* Прозрачный фон */
+    border: none; /* Убрать рамку */
+    cursor: pointer; /* Курсор в виде руки */
+    padding: 0; /* Убрать внутренние отступы */
+    box-sizing: border-box; /* Граница включена в размер элемента */
+    margin-left: 5%;
+}
+
+.burger-bar {
+    width: 100%; /* Ширина линий равна ширине кнопки */
+    height: 2px; /* Высота линий */
+    background-color: #ffffff; /* Цвет линий */
+    border-radius: 10px; /* Скругление краёв линий */
+    transition: all 0.3s linear; /* Плавность анимации */
+}
+/* Стили для главного изображения и текста */
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s ease-in-out;
+}
+
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 670px;
+}
+
+.hero-image .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hero-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    transition: opacity 0.5s ease-in-out;
+    margin-top: 20px;
+}
+
+.hero-text h1.city-selector {
+    font-size: 55px;
+    font-weight: 600; /* Semibold is roughly equivalent to 600 weight */
+    font-family: "Jost", sans-serif;
+}
+
+.hero-text p.event-search {
+    font-size: 55px;
+    font-weight: 600;
+    background-color: white;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Jost', sans-serif;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.configure-bot {
+    width: 302px;
+    height: 69px;
+    background-color: #155F86;
+    color: white;
+    font-size: 25px;
+
+    font-family: 'Jost', sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+.configure-bot:hover {
+    /* Стили для состояния наведения */
+}
+.container {
+    width: 590px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 1%;
+}
+
+.container h1{
+    color: #000;
+    text-align: center;
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    margin-top: 7%;
+}
+
+.step {
+    margin-bottom: 20px;
+    display: flex; /* Используем flex для выравнивания */
+    justify-content: center; /* Центрируем содержимое */
+	opacity: 0; /* Скрываем элементы */
+    transform: translateY(50px); /* Сдвигаем немного вниз */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Плавные переходы для эффектов */
+    will-change: opacity, transform; /* Подсказка браузеру о предстоящих изменениях */
+}
+.visible {
+    opacity: 1; /* Полная видимость для активного элемента */
+    transform: translateY(0); /* Возвращаем на исходное положение */
+}
+.content {
+    display: inline-block; /* Занимает ширину содержимого, не всего родительского элемента */
+    text-align: left; /* Выравнивание текста внутри content на левую сторону */
+    max-width: 100%; /* Ограничиваем максимальную ширину, чтобы предотвратить выход за пределы родителя */
+}
+
+.text {
+    text-align: justify;
+}
+
+.step h2 {
+    text-align: center;
+    margin-bottom: 10px; /* Отступ после заголовка для визуального разделения */
+}
+
+.left {
+    align-self: flex-start; /* Выравнивание шагов left в левой части */
+}
+
+.right {
+    align-self: flex-end; /* Выравнивание шага right в правой части */
+}
+
+.step h2 {
+    color: #333;
+    text-align: center; /* Центрирование заголовков относительно текста ниже */
+}
+
+.step p {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: justify;
+}
+/* Медиа-запросы для установления фиксированного размера шрифта на определенных размерах экрана */
+@media (max-width: 768px) {
+    body {
+        font-size: var(--font-size-base-min);
+    }
+}
+
+@media (min-width: 1920px) {
+    body {
+        font-size: var(--font-size-base-max);
+    }
+}
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(38, 38, 38, 0.8); /* Полупрозрачный фон */
+    visibility: hidden; /* Скрыт по умолчанию */
+    z-index: 1000; /* Высокий z-index, чтобы быть над другими элементами */
+}
+
+.loader-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px; /* Размер контейнера SVG */
+    height: 100px; /* Размер контейнера SVG */
+    background-color: rgba(255, 255, 255, 0.8); /* Белый фон */
+    border-radius: 50%; /* Сделать круглым */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Добавить тень для эффекта "поднятия" */
+}

@@ -1,0 +1,518 @@
+/* Reset some basic elements */
+body, h1, h2, h3, p, ul, li, form, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply a font-family for the whole page */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Container styling */
+.outer-container {
+    width: 100%; /* Full width */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    margin-top: 10%;
+}
+
+.content-wrapper {
+    display: flex; /* Размещение элементов в строку */
+    align-items: center; /* Центрирование по вертикали */
+    width: max(350px);
+}
+
+.phone-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensures the border image is behind the content */
+}
+.container {
+    position: relative;
+    max-width: 600px;
+    padding: 126px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.form-group label img {
+    margin-right: 10px;
+}
+
+.keyword-input-container {
+    display: flex;
+    align-items: center;
+}
+
+#keyword-input,
+#group-input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#add-keyword-btn,
+#add-group-btn {
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #155F86;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#add-keyword-btn:hover,
+#add-group-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Keyword and group list styling */
+#keyword-list,
+#group-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+#keyword-list li,
+#group-list li {
+    background-color: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+#keyword-list li button,
+#group-list li button {
+    margin-left: 10px;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.city-icon {
+    width: 30px;
+    height: 29px;
+    margin-right: 10px;
+}
+
+.keywords-icon {
+    width: 35px;
+    height: 22px;
+    margin-right: 10px;
+}
+.group-icon {
+    width: 35px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+
+#id_city {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 10px; /* Add some space between the label and the select box */
+    height: 50px; /* Increase the height of the select box */
+}
+
+/* Save button styling */
+.save-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #155F86;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background-color: #0056b3;
+}
+
+/* Note section styling */
+.note {
+    background-color: #e9ecef;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.note h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.note ul {
+    list-style-type: decimal;
+    padding-left: 20px;
+}
+
+.note ul li {
+    margin-bottom: 10px;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(38, 38, 38, 0.8); /* Полупрозрачный фон */
+    visibility: hidden; /* Скрыт по умолчанию */
+    z-index: 1000; /* Высокий z-index, чтобы быть над другими элементами */
+}
+
+.loader-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px; /* Размер контейнера SVG */
+    height: 100px; /* Размер контейнера SVG */
+    background-color: rgba(255, 255, 255, 0.8); /* Белый фон */
+    border-radius: 50%; /* Сделать круглым */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Добавить тень для эффекта "поднятия" */
+}
+
+.robot-box {
+    width: max(350px);
+    height: 350px;
+}
+
+.robot {
+    width: 250px;
+    height: 250px;
+    animation: robotMoves 2s ease-in-out alternate infinite;
+}
+
+.robot.second-stage {
+    /* Первая анимация */
+    animation: robotMovesStageTwo 2s ease-in-out alternate infinite;
+}
+
+.robot-arm-left,
+.robot-arm-right,
+.gear,
+.gear-1,
+.robot-antenna {
+    pointer-events: none;
+}
+
+.gear {
+    transform-box: fill-box;
+    transform-origin: center center;
+    animation: gearhSpin 3s linear infinite;
+}
+
+.gear-1 {
+    display: none;
+    transform-box: fill-box;
+    transform-origin: center center;
+    transform: translate(-20px, 78px);
+}
+
+.robot-eyes > circle {
+    transform-box: fill-box;
+    transform-origin: center center;
+    animation: eyesBlink 2s linear alternate infinite;
+}
+
+.robot.second-stage .robot-eyes {
+    animation: eyesMoves 5s linear alternate infinite;
+}
+
+.robot.second-stage .robot-antenna {
+    animation: antennaMoves 5s linear alternate infinite;
+}
+
+.robot.second-stage .gear {
+    display: none;
+}
+
+.robot.second-stage .gear-1 {
+    display: inline;
+}
+
+.robot.second-stage .robot-arm-right {
+    transform-box: fill-box;
+    transform-origin: center center;
+    transform: rotateY(180deg) rotate(165deg) translate(3px, -35px);
+}
+
+@keyframes robotMoves {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(10px);
+    }
+}
+
+@keyframes robotMovesStageTwo {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(10px);
+    }
+}
+
+@keyframes gearhSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes eyesBlink {
+    10% {
+        transform: scaleY(1);
+    }
+    11% {
+        transform: scaleY(0);
+    }
+    12% {
+        transform: scaleY(0);
+    }
+    13% {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes eyesMoves {
+    10% {
+        transform: translateX(0px);
+    }
+    13% {
+        transform: translateX(-16px);
+    }
+    30% {
+        transform: translateX(-16px);
+    }
+    33% {
+        transform: translateX(16px);
+    }
+    45% {
+        transform: translateX(16px);
+    }
+    47% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes antennaMoves {
+    10% {
+        transform: translateX(0px);
+    }
+    13% {
+        transform: translateX(2px);
+    }
+    30% {
+        transform: translateX(2px);
+    }
+    33% {
+        transform: translateX(-20px);
+    }
+    45% {
+        transform: translateX(-20px);
+    }
+    47% {
+        transform: translateX(0px);
+    }
+}
+
+.second-container {
+    height: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -24px 35.9px rgba(0, 0, 0, 0.13); /* Тень, падающая наверх */
+    margin-bottom: 100px;
+}
+
+.city-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.city-section h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.city-section p {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.form-control {
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white; /* Цвет фона */
+}
+
+.submit-button {
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #005f7f; /* Цвет кнопки */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #004f6f; /* Цвет кнопки при наведении */
+}
+
+.stats {
+    margin-left: 20px;
+    box-shadow: 0 1px 35.9px rgb(21 95 134 / 29%);
+    border: none;
+    border-radius: 24px;
+}
+
+.stat {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+    font-size: 1.5em;
+    text-align: center; /* Центрирование текста */
+}
+
+.stat span {
+    display: block;
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 10px; /* Добавим отступ снизу для лучшего выравнивания */
+}
+.warning-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: none; /* Hidden by default */
+}
+.exclude-icon {
+    width: 35px;
+    height: 22px;
+    margin-right: 10px;
+}
+
+#exclude-input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#add-exclude-btn {
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #155F86;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#add-exclude-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Exclude list styling */
+#exclude-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+#exclude-list li {
+    background-color: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+#exclude-list li button {
+    margin-left: 10px;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#id_excludes {
+    display: none;
+}

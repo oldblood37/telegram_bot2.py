@@ -1,0 +1,52 @@
+{% extends "headerfooter.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evhub О нас</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/stylenews.css' %}">
+</head>
+<body>
+    <main>
+        <div class="hero-image">
+            <img src="{% static 'images/news/news.png' %}" alt="Initial Image" class="image" id="image1">
+            <img src="{% static 'images/news/news2.png' %}" alt="Secondary Image" class="image" id="image2" style="opacity: 0;">
+            <div class="hero-text" id="heroText">Новости</div>
+        </div>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <p> 1</p>
+        <div id="loader" class="loader">
+            <div class="loader-content">
+                <img src="{% static 'images/main/load.gif' %}" alt="Loading" />
+            </div>
+        </div>
+    </main>
+<script src="{% static 'js/jsnews.js' %}"></script>
+<script src="{% static 'js/jsloader.js' %}"></script>
+</body>
+{% endblock %}
+</html>

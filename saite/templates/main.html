@@ -1,0 +1,86 @@
+{% extends "headerfooter.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Django Site{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/stylemain.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="hero-image">
+            <img src="{% static 'images/main/main1.png' %}" alt="Initial Image" class="image" id="image1">
+            <img src="{% static 'images/main/main2.png' %}" alt="Secondary Image" class="image" id="image2" style="opacity: 0;">
+            <div class="hero-text">
+                <h1 class="city-selector">Выбери свой город</h1>
+                <p class="event-search">И ищи мероприятия</p>
+            </div>
+        </div>
+        <div class="container">
+            <h1>Как пользоваться</h1>
+            <div class="steps">
+                <div class="step left">
+                    <div class="content">
+                        <h2>Шаг 1</h2>
+                        <div class="text">
+                            <p>Для начала, вам нужно войти на сайт</p>
+                            <p>с помощью телеграм бота, в чате с ним</p>
+                            <p>нужно будет ввести команду /vhod</p>
+                            <p>и бот отправит вам личную ссылку вход</p>
+                            <p>на сайт, после перехода по ссылке</p>
+                            <p>вы будете автоматически залогиненны.</p>
+                        </div>
+                    </div>
+                    <img src="{% static 'images/main/step1.svg' %}" alt="Step 1" class="image" id="image1" width="260" height="230">
+                </div>
+                <div class="step right">
+                    <img src="{% static 'images/main/step2.svg' %}" alt="Step 2" class="image" id="image1" width="260" height="230">
+                    <div class="content">
+                        <h2>Шаг 2</h2>
+                        <div class="text">
+                            <p>Далее справа в углу у вас появится</p>
+                            <p>кнопка “Настроить бота” нажмите ее</p>
+                            <p>вас направит на страницу настройки,</p>
+                            <p>вам нужно будет выбрать город,</p>
+                            <p>и ключевые слова, слова указывать</p>
+                            <p>в ковычках и жмем сахранить.</p>
+                            <p>Бот отправит вам сообщение что</p>
+                            <p>настройки успешно сохранены.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="step left">
+                    <div class="content">
+                        <h2>Шаг 3</h2>
+                        <div class="text">
+                            <p>Так же если вы не хотите придумывать</p>
+                            <p>какие настройки хотите, вы можете</p>
+                            <p>перейти в каталог и взять настройки</p>
+                            <p>других пользователей, ну или же</p>
+                            <p>использовать их как пример</p>
+                            <p>и настроить их настройки под себя.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="configure-bot">Настроить бота</button>
+        </div>
+        <div id="loader" class="loader">
+            <div class="loader-content">
+                <img src="{% static 'images/main/load.gif' %}" alt="Loading" />
+            </div>
+        </div>
+    </main>
+    <script src="{% static 'js/jsmain.js' %}"></script>
+    <script src="{% static 'js/jsloader.js' %}"></script>
+</body>
+{% endblock %}
+</html>

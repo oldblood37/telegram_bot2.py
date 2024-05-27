@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Evhub{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/headerfooter.css' %}">
+</head>
+<body>
+<script src="{% static 'js/jsloader.js' %}"></script>
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'main-page' %}" class="logo-container">
+                <img src="{% static 'images/header/logo.svg' %}" alt="Логотип" class="logo">
+            </a>
+            <ul class="nav-list">
+                <li><a href="{% url 'main-page' %}" class="text-button">Главная</a></li>
+                <li><a href="{% url 'news-page' %}" class="text-button">Новости</a></li>
+                <li><a href="{% url 'about-page' %}" class="text-button">О нас</a></li>
+            </ul>
+            <div class="otstup"></div>
+            {% if user.is_authenticated %}
+            <a href="{% url 'settings-page' %}" class="custom-button">
+                <span class="icon-container">
+                    <img width="21" height="29" fill="none" src="{% static 'images/header/bot.svg' %}">
+                    <path d="M12 6v12m6-6H6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </img>
+                </span>
+                <span class="divider"></span>
+                <span class="text">Настроить бота</span>
+            </a>
+            {% else %}
+            <a class="custom-button2" href="https://t.me/EvHubBot">
+                <span class="icon-container">
+                    <img width="21" height="29" fill="none" src="{% static 'images/header/telegaicon.svg' %}">
+                    <path d="M12 6v12m6-6H6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </img>
+                </span>
+                <span class="divider"></span>
+                <span class="text">Вход Telegram</span>
+            </a>
+            {% endif %}
+            <button class="burger-button">
+                <span class="burger-bar"></span>
+                <span class="burger-bar"></span>
+                <span class="burger-bar"></span>
+            </button>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        <!-- Контент страниц будет вставляться сюда -->
+        {% endblock %}
+    </main>
+        <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Быстрые ссылки</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'main-page' %}">Главная</a></li>
+                    <li><a href="{% url 'news-page' %}">Новости</a></li>
+                    <li><a href="{% url 'about-page' %}">О нас</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p>Email: support@evhub.com</p>
+                <p>Telegram: @evhub_support</p>
+            </div>
+            <div class="footer-section">
+                <h3>Мы в социальных сетях</h3>
+                <a href="#" class="footer-link">Facebook</a>
+                <a href="#" class="footer-link">Twitter</a>
+                <a href="#" class="footer-link">Instagram</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 EvHub. Все права защищены.</p>
+            <p>
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Условия использования</a>
+            </p>
+        </div>
+    </footer>
+    <script src="{% static 'saite/js/jsmain.js' %}"></script>
+</body>
+</html>
