@@ -5,6 +5,11 @@ from telegram_auth.views import update_parser_settings
 from telegram_auth.models import ParserSetting
 import json
 import logging
+from .forms import NewsForm
+from .models import News
+from django.http import JsonResponse, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 handler = logging.StreamHandler()
@@ -15,9 +20,32 @@ logger.addHandler(handler)
 def main_page(request):
     return render(request, 'main.html')
 
+@csrf_exempt
 def news_page(request):
-    return render(request, 'news.html')
+    if request.method == 'POST' and request.user.is_staff:
+        data = json.loads(request.body)
+        form = NewsForm(data)
+        if form.is_valid():
+            news = form.save()
+            return JsonResponse({'id': news.id})
+        else:
+            return JsonResponse({'errors': form.errors}, status=400)
+    else:
+        form = NewsForm()
 
+    news = News.objects.all().order_by('-created_at')
+    return render(request, 'news.html', {'form': form, 'news': news, 'is_admin': request.user.is_staff})
+
+@csrf_exempt
+def delete_news(request, news_id):
+    if request.method == 'DELETE' and request.user.is_staff:
+        try:
+            news = News.objects.get(id=news_id)
+            news.delete()
+            return JsonResponse({'success': True})
+        except News.DoesNotExist:
+            return JsonResponse({'error': 'News not found'}, status=404)
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 def about_page(request):
     user_count = User.objects.count()
     city_count = City.objects.count()
